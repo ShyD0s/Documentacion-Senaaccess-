@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base href="/admin/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte De Novedades</title>
+  <link rel="icon" type="image/png" href="Icons/logoSena.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="font-family: 'Inter', 'Roboto', sans-serif;">
+
+<input type="checkbox" id="themeToggle" class="theme-checkbox">
+
+<header class="barra-superior">
+  <div class="logo">
+    <a href="Perfil.html" style="display: flex;"><img src="Icons/logoSena.png" alt="SENA" style="height: 40px; width: auto;"></a>
+    <div>
+      <div style="font-size: 1.25rem; font-weight: 700; letter-spacing: 1px; line-height: 1.2; color: var(--text-color); margin-bottom: 0;">
+        SENA <span class="neon-text">ACCESS</span>
+      </div>
+      <span class="logo-badge" style="margin-left: 0;">ADMIN PANEL</span>
+    </div>
+  </div>
+
+  <nav class="menu-superior">
+
+    <div class="menu-desplegable">
+      <a href="index.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">group</span> Usuarios</a>
+      <div class="submenu">
+        <a href="AgregarNuevosUsu.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">person_add</span> Crear usuarios</a>
+      </div>
+    </div>
+
+    <div class="menu-desplegable">
+      <a href="#"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">history</span> Registro De Acceso</a>
+      <div class="submenu">
+        <a href="RegistroDeInstructores.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">school</span> Instructores</a>
+        <a href="RegistroDeAcceso.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">person</span> Aprendices</a>
+      </div>
+    </div>
+
+    <a href="Reporte-novedades.html" class="activo"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">report_problem</span> Reporte De Novedades</a>
+    <a href="reporte-instructor.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">assignment</span> Reportes Al Instructor</a>
+
+  </nav>
+
+  <div class="perfil">
+    <div class="perfil-info" tabindex="0">
+      <img src="https://cdn-icons-png.flaticon.com/512/711/711769.png" alt="Perfil">
+      <div class="perfil-datos">
+        <span class="nombre">Juan Pablo</span>
+        <span class="rol">Administrador</span>
+      </div>
+    </div>
+    <div class="perfil-dropdown" id="perfilDropdown">
+      <a href="Perfil.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">account_circle</span> Ver Perfil</a>
+      <a href="Configuracion.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">settings</span> Configuración</a>
+      <hr>
+      <a href="/logout.php"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">logout</span> Cerrar Sesión</a>
+    </div>
+  </div>
+</header>
+<label for="themeToggle" class="theme-toggle-btn"><span class="dark-icon">🌙</span><span class="light-icon" style="display:none">☀️</span></label>
+
+<div class="fade-in-up">
+<div class="glass-box p-4 mb-5 mx-auto" style="max-width: 800px;">
+    <div class="section-header mb-4">
+      <h3 class="mb-0" style="color: var(--primary-color); font-weight: 800;">Comprobante De Ingreso</h3>
+    </div>
+  <div class="formulario">
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="input-icon-group">
+          <label class="form-label">Elemento:</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">devices</span>
+            <input class="form-control">
+          </div>
+        </div>
+        <div class="input-icon-group">
+          <label class="form-label">Fecha:</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">calendar_today</span>
+            <input class="form-control">
+          </div>
+        </div>
+        <div class="input-icon-group">
+          <label class="form-label">Hora:</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">schedule</span>
+            <input class="form-control">
+          </div>
+        </div>
+        <div class="input-icon-group">
+          <label class="form-label">Accesorio Adicional:</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">add_circle</span>
+            <input class="form-control">
+          </div>
+        </div>
+        <div class="input-icon-group">
+          <label class="form-label">Propietario:</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">person</span>
+            <input class="form-control">
+          </div>
+        </div>
+        <div class="input-icon-group">
+          <label class="form-label">Administrador que Registra:</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">admin_panel_settings</span>
+            <input class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="aviso text-center p-3 mt-3" style="background: var(--glass-bg); border-radius: 16px;">
+      <h3>AVISO</h3>
+      <p class="mb-0">El Centro De Servicio Y Comercio no se hace responsable por daño o perdida de los equipos o elementos ajenos ingresados a la institucion</p>
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-primary-solid">Enviar</button>
+    </div>
+</div>
+</div>
+
+
+    <footer class="footer-end">
+  <div class="footer-main">
+    <div>
+      <p style="font-weight: 700; margin: 0;">
+        <span class="text-success">Sena</span>Access
+        <span class="footer-version">v0.1.9</span>
+      </p>
+    </div>
+    <span class="footer-divider">|</span>
+    <div>
+      <p style="font-size: 0.875em; opacity: 0.75; margin: 0;">
+        &copy; 2025 SENA &amp; SCS. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#">Soporte</a>
+  </div>
+</footer>
+
+
+</body>
+</html>

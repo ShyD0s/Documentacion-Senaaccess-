@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base href="/admin/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENA-Panel de Administrador</title>
+  <link rel="icon" type="image/png" href="Icons/logoSena.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="style.css">
+  <script src="/js/panel-common.js"></script>
+</head>
+<body style="font-family: 'Inter', 'Roboto', sans-serif;">
+
+<input type="checkbox" id="themeToggle" class="theme-checkbox">
+
+<header class="barra-superior">
+  <div class="logo">
+    <a href="Perfil.html" style="display: flex;"><img src="Icons/logoSena.png" alt="SENA" style="height: 40px; width: auto;"></a>
+    <div>
+      <div style="font-size: 1.25rem; font-weight: 700; letter-spacing: 1px; line-height: 1.2; color: var(--text-color); margin-bottom: 0;">
+        SENA <span class="neon-text">ACCESS</span>
+      </div>
+      <span class="logo-badge" style="margin-left: 0;">ADMIN PANEL</span>
+    </div>
+  </div>
+
+  <nav class="menu-superior">
+
+    <div class="menu-desplegable">
+      <a href="index.html" class="activo"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">group</span> Usuarios</a>
+      <div class="submenu">
+        <a href="AgregarNuevosUsu.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">person_add</span> Crear usuarios</a>
+      </div>
+    </div>
+
+    <div class="menu-desplegable">
+      <a href="#"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">history</span> Registro De Acceso</a>
+      <div class="submenu">
+        <a href="RegistroDeInstructores.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">school</span> Instructores</a>
+        <a href="RegistroDeAcceso.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">person</span> Aprendices</a>
+      </div>
+    </div>
+
+    <a href="Reporte-novedades.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">report_problem</span> Reporte De Novedades</a>
+    <a href="reporte-instructor.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">assignment</span> Reportes Al Instructor</a>
+
+  </nav>
+
+  <div class="perfil">
+    <div class="perfil-info" tabindex="0">
+      <img src="https://cdn-icons-png.flaticon.com/512/711/711769.png" alt="Perfil">
+      <div class="perfil-datos">
+        <span class="nombre" id="header-name">Admin</span>
+        <span class="rol">Administrador</span>
+      </div>
+    </div>
+    <div class="perfil-dropdown" id="perfilDropdown">
+      <a href="Perfil.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">account_circle</span> Ver Perfil</a>
+      <a href="Configuracion.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">settings</span> Configuración</a>
+      <hr>
+      <a href="/logout.php"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">logout</span> Cerrar Sesión</a>
+    </div>
+  </div>
+</header>
+<label for="themeToggle" class="theme-toggle-btn"><span class="dark-icon">🌙</span><span class="light-icon" style="display:none">☀️</span></label>
+
+<div class="fade-in-up">
+<div class="caja-instructores">
+  <h2 class="h1instructores">INSTRUCTORES</h2>
+</div>
+<div class="instructores" id="instructores-container">
+  <div class="text-center opacity-50 py-4" id="instructores-loading">Cargando...</div>
+</div>
+
+<div class="caja-aprendices">
+  <h2 class="h1aprendices">APRENDICES</h2>
+</div>
+<div class="aprendices" id="aprendices-container">
+  <div class="text-center opacity-50 py-4" id="aprendices-loading">Cargando...</div>
+</div>
+</div>
+
+<footer class="footer-end">
+  <div class="footer-main">
+    <div>
+      <p style="font-weight: 700; margin: 0;">
+        <span class="text-success">Sena</span>Access
+        <span class="footer-version">v0.1.9</span>
+      </p>
+    </div>
+    <span class="footer-divider">|</span>
+    <div>
+      <p style="font-size: 0.875em; opacity: 0.75; margin: 0;">
+        &copy; 2025 SENA &amp; SCS. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#">Soporte</a>
+  </div>
+</footer>
+
+
+<script>
+function buildCard(user) {
+  const card = document.createElement('div');
+  card.className = 'ejeminstru01';
+  card.innerHTML = `
+    <div class="card-header">
+      <img class="imginstructores" src="Img/hamster.jpg" alt="${escapeHtml(user.user_name)}">
+      <div class="nombre-opciones">
+        <h2>${escapeHtml(user.user_name)} ${escapeHtml(user.user_lastname || '')}</h2>
+        <div class="opciones">
+          <button class="btn-opciones">►</button>
+          <div class="menu-opciones">
+            <a href="ActualizarDatos.html">Actualizar</a>
+            <a href="MensajeAdvertenciaBorrar.html">Borrar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>C.C.: ${escapeHtml(user.user_identification || 'N/A')}</p>
+    <p>Ficha: ${escapeHtml(user.user_coursenumber || 'N/A')}</p>
+    <p>Programa: ${escapeHtml(user.user_program || 'N/A')}</p>
+    <p>Jornada: ${escapeHtml(user.user_schedule || 'N/A')}</p>
+    <p>Nivel de formacion: ${escapeHtml(user.user_level || 'N/A')}</p>
+  `;
+  return card;
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    const me = await apiGet('/api/user');
+    if (me) {
+      document.getElementById('header-name').textContent = me.user_name + ' ' + (me.user_lastname || '');
+    }
+
+    const users = await apiGet('/api/admin/users');
+    if (!users) return;
+
+    const roles = await apiGet('/api/admin/roles');
+    const roleMap = {};
+    if (roles) roles.forEach(r => roleMap[r.id_rol || r.id] = r.rol_name || r.name);
+
+    const instructors = [];
+    const aprendices = [];
+
+    users.forEach(u => {
+      const roleName = (roleMap[u.fk_id_rol] || '').toLowerCase();
+      if (roleName === 'instructor') instructors.push(u);
+      else if (roleName === 'aprendiz') aprendices.push(u);
+    });
+
+    const instructorsEl = document.getElementById('instructores-container');
+    const aprendicesEl = document.getElementById('aprendices-container');
+
+    function renderUsers(users, container) {
+      if (users.length === 0) {
+        container.innerHTML = '<div class="text-center opacity-50 py-4">No hay usuarios registrados</div>';
+        return;
+      }
+      container.innerHTML = '';
+      users.forEach(u => container.appendChild(buildCard(u)));
+    }
+
+    renderUsers(instructors, instructorsEl);
+    renderUsers(aprendices, aprendicesEl);
+  } catch (e) {
+    console.error('Error cargando usuarios:', e);
+  }
+});
+</script>
+</body>
+</html>

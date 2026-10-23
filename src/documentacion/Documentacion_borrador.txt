@@ -1,0 +1,81 @@
+DOCUMENTACIÓN TÉCNICA: SENAACCESS
+
+SenaAccess es un sistema integral de gestión de accesos y reportes diseñado para optimizar el control de entradas y salidas en los ambientes institucionales del SENA. El proyecto destaca por un enfoque de desarrollo moderno que prioriza la seguridad, la interactividad, la eficiencia administrativa y el procesamiento biométrico en tiempo real.
+
+--------------------------------------------------
+ARQUITECTURA DEL SISTEMA: SPA, API GATEWAY Y MICROSERVICIOS
+--------------------------------------------------
+El sistema implementa una arquitectura desacoplada estructurada en tres capas principales:
+
+1. Frontend (SPA): Interfaz de usuario construida íntegramente en React. Proporciona una experiencia fluida sin recargas de página, delegando la lógica de presentación al cliente.
+2. Backend Principal (Laravel): Actúa como el núcleo de la lógica de negocio, gestión de base de datos, seguridad y como API Gateway para orquestar servicios externos.
+3. Microservicio Biométrico (Flask): Un servicio aislado en Python dedicado exclusivamente al procesamiento matemático y visual de imágenes dactilares.
+
+EQUIPO DE DESARROLLO
+- Back-end: Camilo Montegranario, Laura Medina
+- Front-end: Andrés Arcos, Andrés Volverás
+
+--------------------------------------------------
+STACK TECNOLÓGICO
+--------------------------------------------------
+
+1. Front-end (Interfaz y Cliente)
+- Core: HTML5, React 19.
+- Enrutamiento: React Router 7 (Gestión de navegación en el cliente).
+- Estilos y UI: CSS3 Custom (implementando una estética ciber/minimalista con clases como glass-box, fade-in-up, btn-glow) y Bootstrap 5.3 vía CDN para diseño responsivo y estructura base.
+- Comunicación: Axios (Consumo de API REST con manejo de interceptores para tokens Bearer).
+- Build Tool: Vite (Compilación rápida y Hot Module Replacement).
+
+2. Back-end Principal (API REST)
+- Core: PHP 8.1+, Laravel 10.
+- Base de Datos: MySQL (Gestión relacional, entorno local XAMPP).
+- Autenticación: Laravel Sanctum.
+
+3. Microservicio Biométrico
+- Core: Python 3.9+, Flask (API REST ligera).
+- Procesamiento de Imágenes: OpenCV (Extracción de minucias y puntos clave usando el algoritmo ORB).
+- Cálculo Científico: NumPy (Manejo de matrices y cálculo de similitudes vectoriales).
+
+4. Servicios y APIs Externas
+- Cloudinary: Repositorio en la nube para la gestión y almacenamiento optimizado de las fotografías de perfil de aprendices e instructores.
+- Resend: Plataforma para el envío de correos electrónicos transaccionales y notificaciones del sistema de forma asíncrona.
+
+--------------------------------------------------
+FLUJO DE TRABAJO (WORKFLOWS)
+--------------------------------------------------
+
+A. Autenticación General y Navegación
+1. Login: El usuario ingresa sus credenciales en el componente de autenticación de React.
+2. Generación de Token: El servidor (Laravel Sanctum) valida los datos y retorna un JSON con un Access Token de corta duración.
+3. Persistencia: React captura el token y lo almacena de forma segura en el LocalStorage del navegador, junto con el rol del usuario (Admin/Usuario/Seguridad).
+4. Navegación Protegida: React Router redirige al usuario al panel correspondiente según su nivel de acceso.
+5. Peticiones Autorizadas: Al navegar, Axios lee el token y lo adjunta automáticamente en el encabezado Authorization para cualquier operación hacia Laravel.
+
+B. Flujo de Ingreso Biométrico
+Para garantizar la seguridad y el rendimiento, el procesamiento de las huellas dactilares nunca satura el servidor principal ni expone el motor de IA al internet público:
+1. Captura y Envío: React captura la imagen de la huella desde el hardware y la envía a la API de Laravel empaquetada mediante la API FormData (multipart/form-data).
+2. Delegación Interna: Laravel recibe la petición, valida los permisos y realiza una solicitud HTTP interna hacia el microservicio de Flask, enviando la imagen cruda de la huella.
+3. Procesamiento Aislado: Flask ecualiza la imagen con OpenCV, extrae los descriptores ORB y los compara en memoria con la huella registrada. Retorna a Laravel un booleano (true/false) y el score de coincidencia.
+4. Acciones Posteriores (Servicios Externos):
+   - Si la validación es exitosa, Laravel registra el acceso en MySQL.
+   - Laravel consulta la URL de la foto de perfil alojada en Cloudinary.
+   - Laravel dispara un evento en segundo plano para que Resend envíe un correo de notificación de acceso.
+5. Respuesta al Cliente: Laravel responde a React autorizando el acceso y adjuntando la URL de la imagen de Cloudinary, la cual React renderiza instantáneamente en la interfaz.
+
+C. Protocolo de Creación de Componentes Front-end
+Para mantener la consistencia visual y arquitectónica al añadir nuevas interfaces:
+1. Creación (JSX): Se estructura un nuevo componente funcional en resources/js/components/ utilizando hooks (useState, useEffect).
+2. Estilos y Temas: Se aplican las variables CSS (--primary-color, --glass-bg) y las clases globales predefinidas en app.css para asegurar la compatibilidad con el diseño "neon dark" y el modo claro/oscuro.
+3. Configuración de Rutas: Se registra el nuevo componente en resources/js/app.jsx dentro del enrutador principal <Routes>.
+4. Consumo de Datos: Se implementan peticiones mediante Axios. Gracias a los interceptores globales en bootstrap.js, el token de seguridad se incluye automáticamente.
+5. Desarrollo Ágil: Se aprovecha el servidor de desarrollo de Vite (npm run dev) para previsualizar cambios en tiempo real sin perder el estado de la aplicación.
+
+--------------------------------------------------
+FUNCIONALIDADES CLAVE
+--------------------------------------------------
+1. Gestión de Identidad Integral: Registro, enrolamiento de datos y autenticación de usuarios basada en roles estrictos.
+2. Biometría Desacoplada de Alta Velocidad: Control de accesos mediante reconocimiento dactilar rápido ejecutado en un entorno Python optimizado, evitando cuellos de botella en PHP.
+3. Seguridad Multicapa: Protección de rutas y vistas en el cliente (React Router) respaldada por validación de tokens en el servidor (Sanctum), manteniendo el motor biométrico completamente aislado de peticiones externas.
+4. Interfaz Ciber-Estética Adaptativa: Diseño minimalista optimizado para diferentes dispositivos, empleando componentes visuales avanzados (efectos de cristal, bordes luminosos).
+5. Ecosistema Conectado: Integración nativa con almacenamiento multimedia en la nube y notificaciones instantáneas por correo electrónico.
+6. Reportes y Trazabilidad: Panel administrativo para la visualización de datos de flujo peatonal, historial de ingresos y control institucional.

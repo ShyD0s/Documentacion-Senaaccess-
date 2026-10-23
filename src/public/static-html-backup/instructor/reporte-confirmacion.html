@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base href="/instructor/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Reporte Enviado</title>
+    <link rel="icon" type="image/png" href="images/logoSena.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body style="font-family: 'Inter', 'Roboto', sans-serif;">
+<input type="checkbox" id="themeToggle" class="theme-checkbox">
+    <header class="barra-superior">
+        <div class="logo">
+            <a href="Perfil.html" style="display: flex;">
+                <img src="images/logoSena.png" alt="SENA" style="height: 40px; width: auto;">
+            </a>
+            <div>
+                <div style="font-size: 1.25rem; font-weight: 700; letter-spacing: 1px; line-height: 1.2; color: var(--text-color); margin-bottom: 0;">
+                    SENA <span class="neon-text">ACCESS</span>
+                </div>
+                <span class="logo-badge" style="margin-left: 0;">INSTRUCTOR PANEL</span>
+            </div>
+        </div>
+
+        <nav class="menu-superior">
+            <a href="reporte.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">assignment</span> Generar Reporte</a>
+            <a href="novedades.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">report_problem</span> Generar Novedad</a>
+        </nav>
+
+        <div class="perfil">
+            <div class="perfil-info" tabindex="0">
+                <img src="images/holder.jpg" alt="Perfil">
+                <div class="perfil-datos">
+                    <span class="nombre">Juan Pablo</span>
+                    <span class="rol">Instructor</span>
+                </div>
+            </div>
+            <div class="perfil-dropdown" id="perfilDropdown">
+                <a href="Perfil.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">account_circle</span> Ver Perfil</a>
+                <a href="Configuracion.html"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">settings</span> Configuración</a>
+                <hr>
+                <a href="/logout.php"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:6px;">logout</span> Cerrar Sesión</a>
+            </div>
+        </div>
+</header>
+<label for="themeToggle" class="theme-toggle-btn"><span class="dark-icon">🌙</span><span class="light-icon" style="display:none">☀️</span></label>
+
+<div class="fade-in-up">
+<div class="glass-box p-4 mb-5 mx-auto text-center" style="max-width: 500px;">
+  <div class="section-header mb-4">
+    <h3 class="mb-0" style="color: var(--primary-color); font-weight: 800;">Reporte Enviado</h3>
+  </div>
+  <div class="success-icon">&#10003;</div>
+  <p style="color: var(--text-color); opacity: 0.8; margin-bottom: 1.5rem;">Puede volver para solicitar otro reporte</p>
+  <button onclick="window.location.href='reporte.html'" class="btn btn-glow">Volver</button>
+</div>
+</div>
+
+    <footer class="footer-end">
+        <div class="footer-main">
+            <div>
+                <p style="font-weight: 700; margin: 0;">
+                    <span class="text-success">Sena</span>Access
+                    <span class="footer-version">v0.1.9</span>
+                </p>
+            </div>
+            <span class="footer-divider">|</span>
+            <div>
+                <p style="font-size: 0.875em; opacity: 0.75; margin: 0;">
+                    &copy; 2025 SENA &amp; SCS. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#">Privacidad</a>
+            <a href="#">Términos</a>
+            <a href="#">Soporte</a>
+        </div>
+    </footer>
+
+
+</body>
+</html>

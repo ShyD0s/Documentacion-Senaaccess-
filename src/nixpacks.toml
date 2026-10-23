@@ -1,0 +1,22 @@
+[php]
+version = "8.3"
+extensions = [
+  "gmp",
+  "sodium",
+  "intl",
+  "bcmath",
+  "gd",
+  "zip",
+  "dom",
+  "xml",
+  "mbstring",
+  "ctype",
+  "json",
+  "tokenizer",
+  "openssl",
+  "curl",
+  "fileinfo",
+]
+
+[env]
+COMPOSER_ALLOW_SUPERUSER = "1"

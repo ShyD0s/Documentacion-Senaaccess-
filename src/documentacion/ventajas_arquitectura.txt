@@ -1,0 +1,27 @@
+1. Arquitectura Desacoplada (API-First).
+
+API-First: La API es la prioridad, el diseño es colaborativo y se definen las interacciones primero.
+
+React-Router-DOM + Axios (La SPA Desacoplada)
+
+SPA Desacoplada (Single Page Application): es una arquitectura de desarrollo web donde el frontend (la interfaz de usuario) y el backend (la lógica y los datos) operan como aplicaciones independientes, comunicándose únicamente a través de una API REST
+
+Esta es la arquitectura de API First (la que estructuramos en los pasos anteriores).
+
+API REST: Laravel funciona como un proveedor de datos que nos da informacion cuando se lo pedimos. React se encarga de mostrar esa informacion al usuario.
+
+REST: Son las siglas de Representational State Transfer (Transferencia de Estado Representacional). Es simplemente un conjunto de reglas o convenciones que define cómo dos sistemas independientes deben hablarse a través de internet.
+
+¿Cómo funciona? Laravel tiene su propio enrutador y no sabe qué vistas existen; su único trabajo es recibir peticiones HTTP, validar la seguridad y devolver un JSON.
+
+Ventajas:
+
+Separación de responsabilidades: El equipo de Front-end puede trabajar en la interfaz y las rutas de forma totalmente independiente del equipo de Back-end.
+
+Escalabilidad a plataformas móviles: Esta es la ventaja más crítica. Si el día de mañana se decide portar el proyecto web a una aplicación móvil nativa (por ejemplo, construyendo un .apk en Android Studio integrando APIs nativas del dispositivo), el back-end ya está listo. La app de Android simplemente consumirá los mismos endpoints JSON mediante peticiones HTTP. Con Inertia, tendrías que construir una API paralela desde cero solo para la aplicación móvil.
+
+Facilita los Microservicios: Al tratar a Laravel como una API pura, es mucho más natural orquestar comunicaciones con otros servicios aislados (como motores en Python).
+
+Desventajas:
+
+Requiere más código inicial (configurar Axios, interceptores, manejo del estado de UI y persistencia de tokens de seguridad).

@@ -1,0 +1,43 @@
+
+
+A continuación se detalla la lista de Hooks de React utilizados en el proyecto y los componentes principales donde fueron aplicados:
+
+1. useState
+
+Se utilizó intensivamente para manejar el estado local de los componentes: almacenar datos temporales, controlar la interfaz gráfica y manejar la información de los formularios.
+
+Aplicado en:
+- LandingPage.jsx: Para controlar el estado de la animación de salida (isExiting).
+- Login.jsx: Para almacenar los datos de los inputs del formulario (email, password), manejar la visibilidad de la contraseña y controlar el modo invitado.
+- Register.jsx: Para agrupar todos los datos del formulario (formData), almacenar los mensajes de error de las validaciones, y controlar el spinner de carga (loading).
+- Admin.jsx / Aprendiz.jsx: Para controlar la vista actual que se renderiza dentro del dashboard (view), almacenar los datos del usuario activo (currentUser), guardar las listas de datos traídas de la API (users, ingresos, roles) y manejar los filtros de búsqueda.
+- Navbar.jsx: Para controlar si el menú móvil está abierto o cerrado.
+- Fingerprint.jsx: Para manejar el estado del escáner (capturando, escaneando).
+
+
+2. useEffect
+
+Se utilizó para manejar los efectos secundarios, principalmente para hacer peticiones HTTP asíncronas automáticamente cuando el usuario entra a una pantalla, o para validaciones de seguridad.
+
+Aplicado en:
+- Admin.jsx / Aprendiz.jsx: Se ejecuta al montarse el componente para simular la carga inicial del sistema. Realiza peticiones a la API (con axios) para traer el perfil del usuario, la lista de usuarios registrados, los roles y el historial de ingresos.
+- Loading.jsx: Para crear un temporizador automático que redirige al usuario después de una animación de carga exitosa.
+
+
+3. useNavigate (de react-router-dom)
+
+Se utilizó para programar la navegación entre las distintas rutas de la aplicación de manera fluida (Single Page Application) sin recargar el navegador web.
+
+Aplicado en:
+- LandingPage.jsx: Para redirigir hacia las rutas de '/login' o '/register' al presionar los botones.
+- Login.jsx: Para enviar al usuario a su respectivo panel ('/admin' o '/aprendiz') tras verificar sus credenciales exitosamente.
+- Register.jsx: Para devolver al usuario a la pantalla de login una vez creada su cuenta.
+- Admin.jsx / Aprendiz.jsx: Para expulsar al usuario de vuelta al login si su token de sesión expira o si presiona el botón de cerrar sesión.
+
+
+4. useRef
+
+Se utilizó para mantener una referencia directa a elementos del DOM sin causar re-renderizados.
+
+Aplicado en:
+- Admin.jsx: Para hacer referencia directa al contenedor del carrusel de imágenes (carouselRef) y poder manipular su desplazamiento horizontal (scroll).

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "dockerfile"
+  },
+  "deploy": {
+    "startCommand": "php artisan serve --host 0.0.0.0 --port $PORT",
+    "releaseCommand": "mkdir -p storage/framework/views storage/framework/cache/data storage/framework/sessions storage/framework/testing storage/logs bootstrap/cache && chmod -R 755 storage bootstrap/cache && php artisan migrate --force --seed",
+    "healthcheckPath": "/api/health",
+    "restartPolicyType": "on_failure"
+  }
+}
